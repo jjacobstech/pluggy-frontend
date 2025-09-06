@@ -1,35 +1,32 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+  root: ":root";
+  include: ;
+  exclude: ;
+  prefix: ;
+  logs: true;
+}
+@font-face {
+  font-family: 'Lobster Two Bold';
+  src: url('./Lobster_Two/LobsterTwo-Bold.ttf');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lobster Two Regular';
+  src: url('./Lobster_Two/LobsterTwo-Regular.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+@theme {
+  --font-lobster-bold: 'Lobster Two Bold';
+    --font-lobster-regular: 'Lobster Two Regular';
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+@layer base {
+  logo {
+    font-family: var(--font-lobster);
   }
 }
