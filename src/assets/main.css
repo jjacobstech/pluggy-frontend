@@ -26,7 +26,9 @@
 }
 
 @layer base {
+  
   logo {
     font-family: var(--font-lobster);
   }
+
 }

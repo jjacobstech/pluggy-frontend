@@ -21,7 +21,7 @@
   </div>
 
   <div class="flex flex-col space-y-2 items-center justify-center">
-    <p class="text-xl font-lobster-regular">
+    <p class="text-xl font-medium">
       Enter a link to shorten
     </p>
     <input type="text" name="input" v-model="input"
@@ -36,43 +36,73 @@
   </div>
 
   <button v-show="copyBtn" @click="copy"
-    class=" hover:animate-pulse transition-all duration-450   bg-gradient-to-tr  from-orange-500 to-red-500 text-white font-lobster-bold py-2 px-4 rounded-xl">
+    class=" hover:animate-pulse transition-all duration-450 mt-3  bg-gradient-to-tr  from-orange-500 to-red-500 text-white font-lobster-bold py-2 px-4 rounded-xl">
     Copy
   </button>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import axios from 'axios';
+import { BASE_URL } from '@/config';
 
 const input = ref('');
 const link = ref('')
 const copyBtn = ref(false)
 const alert = ref(false)
+const api = axios.create({
+  baseURL: `${BASE_URL}`,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 
-
-const shorten = () => {
-  if (input.value.length === 0) {
-    link.value = "Please enter a link"
-    setTimeout(() => {
-      link.value = ""
-    }, 2000);
-
-  }
-  else {
-    console.log(input.value);
-    link.value = input.value;
-    copyBtn.value = true;
-  }
+});
+const post = async (input: string) => {
+  const request = await api.post('/url/shorten', {
+    url: input
+  }).then((response) => {
+    // console.log(response.data);
+    return response.data
+  })
+    .catch((error) => {
+      // console.log(error.response.data);
+      return error.response.data
+    });
+  return request;
 }
 
+
+const shorten = async () => {
+  if (input.value.length === 0) {
+    link.value = "Please enter a link";
+    setTimeout(() => link.value = "", 2000);
+    return;
+  }
+
+  const urlCheck = input.value.startsWith("https://");
+
+  if (!urlCheck) {
+    link.value = "Please enter a valid url";
+    setTimeout(() => link.value = "", 2000);
+  }
+
+  const response = await post(input.value);
+  // console.log(response);
+  link.value = response.message ?? response.shortUrl;
+  copyBtn.value = true;
+  return;
+
+};
+
 const copy = () => {
-  console.log(input.value);
-  window.navigator.clipboard.writeText(input.value);
+  // console.log(link.value);
+  window.navigator.clipboard.writeText(link.value);
   alert.value = true;
 
   setTimeout(() => {
     alert.value = false;
   }, 2000);
+
 }
 
 
