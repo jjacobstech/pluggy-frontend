@@ -84,6 +84,7 @@ const shorten = async () => {
   if (!urlCheck) {
     link.value = "Please enter a valid url";
     setTimeout(() => link.value = "", 2000);
+    return;
   }
 
   const response = await post(input.value);
