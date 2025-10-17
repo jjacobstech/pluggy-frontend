@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+  root: ":root";
+  include: ;
+  exclude: ;
+  prefix: ;
+  logs: true;
+}
+@font-face {
+  font-family: 'Lobster Two Bold';
+  src: url('fonts/Lobster_Two/LobsterTwo-Bold.ttf');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Outfit Variable';
+  src: url('fonts/Outfit-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lobster Two Regular';
+  src: url('fonts/Lobster_Two/LobsterTwo-Regular.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@theme {
+  --font-lobster-bold: 'Lobster Two Bold';
+  --font-lobster-regular: 'Lobster Two Regular';
+      --color-red-orange: linear-gradient(90deg, rgba(253, 29, 29, 1) 0%, rgba(252, 140, 59, 1) 51%);
+
+}
+
+@layer base {
+
+  #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+ }
+
+  @keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+ }
+
+ @media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+ }
+
+ .logo {
+
+  will-change: filter;
+  transition: filter 300ms;
+  font-family: "Lobster Two Bold";
+ }
+
+ .bg-red-orange{
+  background: var(--color-red-orange);
+ }
+
+  .h-bg-red-orange:hover {
+  background: var(--color-red-orange);
+ }
+
+ .txt-red-orange{
+  color: var(--color-red-orange);
+ }
+
+ .h-border-red-orange:hover{
+border-color:  var(--color-red-orange);
+ }
+
+ .logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+ }
+
+ .logo:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+ }
+
+ .card {
+  padding: 2em;
+ }
+
+ .read-the-docs {
+  color: #888;
+ }
+
+ * {
+  font-family: 'Outfit Variable', sans-serif;
+ }
+
+}
+
+

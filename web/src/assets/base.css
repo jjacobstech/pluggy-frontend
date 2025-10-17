@@ -1,0 +1,9 @@
+  @font-face {
+            font-family: 'Lobster Two';
+            src: url('./fonts/LobsterTwo-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+*{
+  font-family: 'Lobster Two', cursive;
+}
