@@ -1,0 +1,67 @@
+# composer version
+name: pluggy
+# define your services here
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: greenearth
+      POSTGRES_DB: pluggy
+    ports:
+      - "5432:5432"
+    volumes:
+      - pluggy:/data/db
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      PORT: 8000
+      DATABASE_URL: postgres://postgres:greenearth@localhost:5432/pluggy
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    develop:
+       watch:
+         - path: ./api/package.json
+           action: rebuild
+         - path: ./api/package-lock.json
+           action: rebuild
+         - path: ./api
+           target: /app
+           action: sync
+         - path: ./api/.env
+           target: /app
+           action: rebuild
+         - path: ./api/node_modules
+           target: /app
+           action: sync
+  web:
+    build: ./web
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+    environment:
+      VITE_API_URL: http://localhost:8000
+
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    develop:
+       watch:
+         - path: ./web/package.json
+           action: rebuild
+         - path: ./web/package-lock.json
+           action: rebuild
+         - path: ./web
+           action: rebuild
+           target: /app
+
+volumes:
+  pluggy:
