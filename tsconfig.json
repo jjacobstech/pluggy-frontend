@@ -10,7 +10,7 @@
   ],
   "compilerOptions": {
     "module": "NodeNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
 
   }
