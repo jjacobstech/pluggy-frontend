@@ -1,11 +1,11 @@
 <template>
-      <div className="min-h-screen relative bg-gradient-hero z-50">
-            <LandingNavbar />
-            <HeroSection />
-            <FeatureSection />
-            <CTASection />
-            <Footer />
-      </div>
+  <div className="min-h-screen relative bg-gradient-hero z-50">
+    <LandingNavbar />
+    <HeroSection />
+    <FeatureSection />
+    <CTASection />
+    <Footer />
+  </div>
 </template>
 
 <script setup lang="ts">

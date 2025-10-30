@@ -1,15 +1,15 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export const useAuthenticateStore = defineStore("authenticate", () => {
+export const useAuthenticateStore = defineStore('authenticate', () => {
   const isAuthenticated = ref(false);
   const authenticatedUser = ref();
   const authenticatedToken = ref();
   const loggedOut = ref(false);
 
   const authenticate = (user: object, token: string) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('token', token);
     authenticatedUser.value = user;
     authenticatedToken.value = token;
     isAuthenticated.value = true;
@@ -18,8 +18,8 @@ export const useAuthenticateStore = defineStore("authenticate", () => {
   };
 
   const unauthenticate = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     authenticatedUser.value = null;
     authenticatedToken.value = null;
     isAuthenticated.value = false;

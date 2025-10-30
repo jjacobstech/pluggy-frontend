@@ -1,9 +1,9 @@
-import { ref } from "vue";
-import { defineStore } from "pinia";
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
 
-export const useNotifyStore = defineStore("notify", () => {
+export const useNotifyStore = defineStore('notify', () => {
   const status = ref(false);
-  const message = ref("");
+  const message = ref('');
 
   const show = (notifyMessage: string) => {
     status.value = true;
@@ -12,7 +12,7 @@ export const useNotifyStore = defineStore("notify", () => {
 
   const hide = () => {
     status.value = false;
-    message.value = "";
+    message.value = '';
   };
 
   const timeout = (duration: number) => {

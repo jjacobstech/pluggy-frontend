@@ -1,13 +1,7 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
+@import 'tailwindcss';
 @plugin "daisyui" {
   themes: light --default;
-  root: ":root";
-  include: ;
-  exclude: ;
-  prefix: ;
+  root: ':root';
   logs: true;
 }
 @theme inline {
@@ -82,10 +76,6 @@
   /* You can import shadcn-vue component styles here later if needed */
 }
 
-@layer utilities {
-  /* Your custom utility extensions */
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -94,33 +84,35 @@
     @apply bg-background text-foreground;
   }
 }
+
 @font-face {
   font-family: 'Lobster Two Bold';
   src: url('fonts/Lobster_Two/LobsterTwo-Bold.ttf');
   font-weight: 900;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Outfit Variable';
   src: url('fonts/Outfit-VariableFont_wght.ttf') format('truetype');
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Lobster Two Regular';
   src: url('fonts/Lobster_Two/LobsterTwo-Regular.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
+
 @theme {
   --font-lobster-bold: 'Lobster Two Bold';
   --font-lobster-regular: 'Lobster Two Regular';
-      --color-red-orange: linear-gradient(90deg, rgba(253, 29, 29, 1) 0%, rgba(252, 140, 59, 1) 51%);
-
 }
 
 @layer base {
-
-    :root {
+  :root {
+    --color-red-orange: linear-gradient(90deg, rgba(253, 29, 29, 1) 0%, rgba(252, 140, 59, 1) 51%);
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -129,92 +121,93 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
- }
+  }
 
   #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
- }
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
 
   @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
-  to {
-    transform: rotate(360deg);
+
+  @keyframes dotPulse {
+    0%,
+    80%,
+    100% {
+      transform: scale(0);
+      opacity: 0.3;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
- }
 
- @keyframes dotPulse {
-  0%, 80%, 100% {
-    transform: scale(0);
-    opacity: 0.3;
+  .dot {
+    animation: dotPulse 1.2s infinite ease-in-out both;
   }
-  40% {
-    transform: scale(1);
-    opacity: 1;
+
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
   }
-}
 
-.dot {
-  animation: dotPulse 1.2s infinite ease-in-out both;
-}
-
-
- @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .logo {
+    will-change: filter;
+    transition: filter 300ms;
+    font-family: 'Lobster Two Bold';
   }
- }
 
- .logo {
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
 
-  will-change: filter;
-  transition: filter 300ms;
-  font-family: "Lobster Two Bold";
- }
+  .bg-red-orange {
+    background: var(--color-red-orange);
+  }
 
- .bg-red-orange{
-  background: var(--color-red-orange);
- }
+  .bg-gradient-primary {
+    background: var(--color-red-orange);
+  }
 
-  .bg-gradient-primary{
-  background: var(--color-red-orange);
- }
   .h-bg-red-orange:hover {
-  background: var(--color-red-orange);
- }
+    background: var(--color-red-orange);
+  }
 
- .txt-red-orange{
-  color: var(--color-red-orange);
- }
+  .txt-red-orange {
+    background: var(--color-red-orange);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
- .h-border-red-orange:hover{
-border-color:  var(--color-red-orange);
- }
+  .h-border-red-orange:hover {
+    border: 2px solid transparent;
+    border-image-source: var(--color-red-orange);
+    border-image-slice: 1;
+  }
 
- .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
- }
+  .card {
+    padding: 2em;
+  }
 
- .logo:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
- }
+  .read-the-docs {
+    color: #888;
+  }
 
- .card {
-  padding: 2em;
- }
-
- .read-the-docs {
-  color: #888;
- }
-
- * {
-  font-family: 'Outfit Variable', sans-serif;
- }
-
+  * {
+    font-family: 'Outfit Variable', sans-serif;
+  }
 }
 
 :root {
@@ -238,4 +231,3 @@ border-color:  var(--color-red-orange);
   --sidebar-border: hsl(240 3.7% 15.9%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
-
