@@ -116,7 +116,6 @@ const shorten = async () => {
   const urlStart = input.value.startsWith('https://');
   const urlEnd = input.value.endsWith('.com');
   const urlEnds = input.value.endsWith('/');
-  console.log(input.value);
 
   if (!urlStart && !urlEnd && !urlEnds) {
     link.value = 'Please enter a valid url';
@@ -128,6 +127,7 @@ const shorten = async () => {
     url: input.value,
   })
     .then((response) => {
+      // console.log(response.data);
       // console.log(response.data);
       return response.data;
     })
