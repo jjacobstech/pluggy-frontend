@@ -111,34 +111,13 @@ import { RouterLink as Link } from 'vue-router';
 import { ArrowRight, Copy } from 'lucide-vue-next';
 import ZapSvg from '../icons/zap.svg.vue';
 import { ref } from 'vue';
-import axios from 'axios';
-import { BASE_URL } from '@/config';
+import { post } from '@/lib/request';
+import { URL } from '@/config';
 
 const input = ref('');
 const link = ref('');
 const copyBtn = ref(false);
 const alert = ref(false);
-const api = axios.create({
-  baseURL: `${BASE_URL}`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-const post = async (input: string) => {
-  const request = await api
-    .post('/url/shorten', {
-      url: input,
-    })
-    .then((response) => {
-      // console.log(response.data);
-      return response.data;
-    })
-    .catch((error) => {
-      // console.log(error.response.data);
-      return error.response.data;
-    });
-  return request;
-};
 
 const shorten = async () => {
   if (input.value.length === 0) {
@@ -158,15 +137,30 @@ const shorten = async () => {
     return;
   }
 
-  const response = await post(input.value);
+  const response = await post('/url/shorten', {
+    url: input.value,
+  })
+    .then((response) => {
+      // console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      // console.log(error.response.data);
+      return error.response.data;
+    });
   // console.log(response);
-  link.value = response.message ?? response.shortUrl;
+  link.value = response.message ?? `${URL}${response.shortUrl}`;
   copyBtn.value = true;
+
+
+  setTimeout(() => {
+    link.value = '';
+    copyBtn.value = false;
+  }, 10000);
   return;
 };
 
 const copy = () => {
-  // console.log(link.value);
   window.navigator.clipboard.writeText(link.value);
   alert.value = true;
 
