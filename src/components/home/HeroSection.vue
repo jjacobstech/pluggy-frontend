@@ -140,11 +140,6 @@ const shorten = async () => {
   copyBtn.value = true;
   loading.value = false;
 
-
-  setTimeout(() => {
-    link.value = '';
-    copyBtn.value = false;
-  }, 10000);
   return;
 };
 
