@@ -1,6 +1,7 @@
 {
   "files": [],
   "references": [
+
     {
       "path": "./tsconfig.node.json"
     },
@@ -12,6 +13,10 @@
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
 
   }
 }
